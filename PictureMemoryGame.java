@@ -14,6 +14,7 @@ public class PictureMemoryGame extends JFrame {
     private int secondCardIndex;
     private int playerMoves;
 
+
     public PictureMemoryGame() {
         setTitle("Picture Memory Game");
         setSize(725, 725);
@@ -94,6 +95,8 @@ public class PictureMemoryGame extends JFrame {
         Collections.shuffle(cardImages);
     }
 
+
+
     private void handleCardClick(int index) {
         if (cardImages.get(index) == null) {
             return;
@@ -111,21 +114,22 @@ public class PictureMemoryGame extends JFrame {
             cardButtons[secondCardIndex].setIcon(new ImageIcon(imagePaths.get(index)));
 
 
-
             Timer timer = new Timer(1000, new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e ) {
                     if (imagePaths.get(firstCardIndex).equals(imagePaths.get(secondCardIndex))) {
                         cardButtons[firstCardIndex].setIcon(new ImageIcon("BlankIcon.PNG"));
                         cardButtons[secondCardIndex].setIcon(new ImageIcon("BlankIcon.PNG"));
                         cardImages.set(firstCardIndex, null);
                         cardImages.set(secondCardIndex, null);
                         numberOfMatches++;
+
                     }
 
                     if (numberOfMatches == imagePaths.size() / 2) {
                         JOptionPane.showMessageDialog(null, "Congrats! You Matched All The Salem's.");
                         JOptionPane.showMessageDialog(null, "Number Of Moves During Your Game:" + playerMoves);
+                        //JOptionPane.showMessageDialog(null, "Time Played:" + TimesGame);
                         int restartOption = JOptionPane.showOptionDialog(null, "Would You Like To Restart?","Memory Game", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Play Again",  "Quit?"}, "Play Again");
 
                         if (restartOption == 0) {
